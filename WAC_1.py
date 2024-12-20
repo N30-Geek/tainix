@@ -1,10 +1,11 @@
 #!/bin/python
 from Game import Game
+from functions import calc
 
 # Ta key
 player_key = 'c047e3e3971f3c057c468172e80f7ce18a81d6e0'
 # Le code du challenge
-engine_code = 'STARTER_6'
+engine_code = 'WAC_1'
 
 
 def main():
@@ -15,18 +16,13 @@ def main():
     print(data)
 
     # ------- CODE ICI -----------
-    values = data["values"]
-
+    members = data["members"]
+    results= 0
     
-    def diviseur_trois(values):
-        output = []
-        for  v in values:
-            if v%3 == 0:
-                output.append(str(v))
-                
-        return "-".join(output)
+    for m in members:
+        results += calc(m)
 
-    response = diviseur_trois(values)
+    response = f"{results:.2f}kg"
     
     # Permet d'envoyer la reponse du challenge
     game.output({'data': response})
